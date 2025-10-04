@@ -67,6 +67,8 @@ dependencies {
     implementation("com.squareup.moshi:moshi:1.15.1")
     implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
     implementation("com.squareup.moshi:moshi-adapters:1.15.1")
+    implementation("com.google.accompanist:accompanist-flowlayout:0.36.0")
+
 
 
 }

@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -62,6 +63,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.time.LocalDate
 import javax.inject.Singleton
+import androidx.compose.foundation.layout.FlowRow
+import com.google.accompanist.flowlayout.FlowRow
 
 
 @AndroidEntryPoint
@@ -298,7 +301,7 @@ fun HabitCard(
                     modifier = Modifier
                         .weight(1f)
                         .padding(end = 8.dp)
-                        .clickable { onDetail(habit.id!!) } // переход в detail при клике на название
+                        .clickable { onDetail(habit.id!!) }
                 ) {
                     Text(habit.title, fontSize = 18.sp)
                     Text(habit.description, fontSize = 14.sp)
@@ -307,15 +310,17 @@ fun HabitCard(
                     Text("${habit.completedDates.size} выполнено", fontSize = 12.sp)
                 }
             }
+
             Spacer(Modifier.height(8.dp))
-            Row {
-                Button(onClick = { onToggleDoneToday(habit.id!!) }) { Text("Toggle Today") }
-                Spacer(Modifier.width(8.dp))
-                Button(onClick = { onMarkDone(habit.id!!) }) { Text("Mark Today") }
-                Spacer(Modifier.width(8.dp))
-                Button(onClick = { onEdit(habit.id!!) }) { Text("Edit") }
-                Spacer(Modifier.width(8.dp))
-                Button(onClick = { onDelete(habit.id!!) }) { Text("Delete") }
+
+            FlowRow(
+                mainAxisSpacing = 8.dp,
+                crossAxisSpacing = 8.dp
+            ) {
+                Button(onClick = { onToggleDoneToday(habit.id!!) }) { Text("Переключить") }
+                Button(onClick = { onMarkDone(habit.id!!) }) { Text("Отметить") }
+                Button(onClick = { onEdit(habit.id!!) }) { Text("Изменить") }
+                Button(onClick = { onDelete(habit.id!!) }) { Text("Удалить") }
             }
         }
     }
